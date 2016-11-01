@@ -10,7 +10,7 @@ module.exports = RotatingLog = function (logfile, options) {
     var stream      = ps()
     ,   cal         = new DateTimeEmitter
     ,   options     = options || {}
-    ,   maxsize     = ('maxsize' in options) ? options.maxsize : 51200000000 // 50MB default max size
+    ,   maxsize     = ('maxsize' in options) ? options.maxsize : 51200000 // 50MB default max size
     ,   outstream   = fs.createWriteStream(logfile, {flags: 'a'})
     ,   rotating    = false
     ,   logsize     = 0
@@ -30,7 +30,7 @@ module.exports = RotatingLog = function (logfile, options) {
         stream.emit('rotating')
 
         stream.pause()
-        
+
         var fileRotateQueue = async.queue(function (daysback, cb) {
             var formerperiod = util.format('%s.%s', logfile, daysback)
             var newperiod = util.format('%s.%s', logfile, daysback + 1)
@@ -63,10 +63,10 @@ module.exports = RotatingLog = function (logfile, options) {
         }
 
         function truncateCurrent () {
-            fs.open(logfile, 'w', function (err, fd) { 
+            fs.open(logfile, 'w', function (err, fd) {
                 if (err)
                     return stream.emit('error', err)
-                fs.close(fd) 
+                fs.close(fd)
                 resume()
             })
         }
@@ -84,7 +84,7 @@ module.exports = RotatingLog = function (logfile, options) {
                     truncateCurrent()
                 })
             }
-            else { 
+            else {
                 truncateCurrent()
             }
         }
@@ -111,7 +111,7 @@ module.exports = RotatingLog = function (logfile, options) {
         }
         if (maxsize > 0 && logsize + data.length > maxsize && !rotating) {
             rotate(commit)
-        } else 
+        } else
             commit()
     }
 
