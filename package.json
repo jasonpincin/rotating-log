@@ -1,31 +1,34 @@
 {
-    "name": "rotating-log"
-  , "description": "Rotating log file with writable stream interface"
-  , "version": "0.1.0"
-  , "keywords": [
-      "stream"
-    , "writable"
-    , "log"
-    , "rotate"
-    , "rotating"
-  ]
-  , "repository" : {
-       "type" : "git"
-      ,"url" : "https://github.com/jasonpincin/rotating-log"
+  "name": "rotating-log",
+  "description": "Rotating log file with writable stream interface",
+  "version": "0.1.1",
+  "keywords": [
+    "stream",
+    "writable",
+    "log",
+    "rotate",
+    "rotating"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jasonpincin/rotating-log"
+  },
+  "dependencies": {
+    "pause-stream": "~0.0.6",
+    "async": "~0.1.22",
+    "date-events": "~0.1.0"
+  },
+  "devDependencies": {
+    "tap": "~0.3.3"
+  },
+  "scripts": {
+    "test": "tap test"
+  },
+  "engine": {
+    "node": ">=0.8.8"
+  },
+  "author": {
+    "name": "Jason Pincin",
+    "email": "jason@pincin.com"
   }
-  , "dependencies": {
-      "pause-stream": "~0.0.6"
-    , "async": "~0.1.22"
-    , "date-events": "~0.1.0"
-  }
-  , "devDependencies": {
-      "tap": "~0.3.3"
-  }
-  , "scripts": {
-      "test" : "tap test"
-  }
-  ,"engine" : {
-      "node" : ">=0.8.8"
-  }
-  ,"author" : {"name" : "Jason Pincin", "email" : "jason@pincin.com" }
 }
